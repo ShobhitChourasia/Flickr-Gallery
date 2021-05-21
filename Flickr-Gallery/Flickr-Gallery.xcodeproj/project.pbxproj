@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		EE2B14B5265838CB00CF55E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */; };
 		EE2B14B7265838CB00CF55E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */; };
-		EE2B14B9265838CB00CF55E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14B8265838CB00CF55E4 /* ViewController.swift */; };
 		EE2B14BC265838CB00CF55E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BA265838CB00CF55E4 /* Main.storyboard */; };
 		EE2B14BE265838D700CF55E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BD265838D700CF55E4 /* Assets.xcassets */; };
 		EE2B14C1265838D700CF55E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */; };
 		EE2B14CC265838D700CF55E4 /* Flickr_GalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14CB265838D700CF55E4 /* Flickr_GalleryTests.swift */; };
 		EE2B14D7265838D700CF55E4 /* Flickr_GalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14D6265838D700CF55E4 /* Flickr_GalleryUITests.swift */; };
+		EE2B14F326583CCC00CF55E4 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14F226583CCC00CF55E4 /* GalleryViewController.swift */; };
+		EE2B14F826583E0100CF55E4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14F726583E0100CF55E4 /* APIManager.swift */; };
+		EE2B14FD26583F0200CF55E4 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14FC26583F0200CF55E4 /* PhotosModel.swift */; };
+		EE2B1507265844D100CF55E4 /* SearchAPICoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +41,6 @@
 		EE2B14B1265838CB00CF55E4 /* Flickr-Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr-Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EE2B14B8265838CB00CF55E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EE2B14BB265838CB00CF55E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE2B14BD265838D700CF55E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2B14C0265838D700CF55E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,10 @@
 		EE2B14D2265838D700CF55E4 /* Flickr-GalleryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flickr-GalleryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2B14D6265838D700CF55E4 /* Flickr_GalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flickr_GalleryUITests.swift; sourceTree = "<group>"; };
 		EE2B14D8265838D700CF55E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE2B14F226583CCC00CF55E4 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		EE2B14F726583E0100CF55E4 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		EE2B14FC26583F0200CF55E4 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
+		EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPICoordinatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +105,17 @@
 		EE2B14B3265838CB00CF55E4 /* Flickr-Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				EE2B14C2265838D700CF55E4 /* Info.plist */,
 				EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */,
 				EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */,
-				EE2B14B8265838CB00CF55E4 /* ViewController.swift */,
-				EE2B14BA265838CB00CF55E4 /* Main.storyboard */,
 				EE2B14BD265838D700CF55E4 /* Assets.xcassets */,
 				EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */,
-				EE2B14C2265838D700CF55E4 /* Info.plist */,
+				EE2B14BA265838CB00CF55E4 /* Main.storyboard */,
+				EE2B14EC26583C0300CF55E4 /* Models */,
+				EE2B14EB26583BF700CF55E4 /* Presentation */,
+				EE2B14EA26583BF000CF55E4 /* ViewModel */,
+				EE2B14EE26583C2400CF55E4 /* Network Manager */,
+				EE2B14ED26583C1200CF55E4 /* Utility */,
 			);
 			path = "Flickr-Gallery";
 			sourceTree = "<group>";
@@ -126,6 +136,77 @@
 				EE2B14D8265838D700CF55E4 /* Info.plist */,
 			);
 			path = "Flickr-GalleryUITests";
+			sourceTree = "<group>";
+		};
+		EE2B14EA26583BF000CF55E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14F126583C9A00CF55E4 /* Gallery */,
+				EE2B1505265844B300CF55E4 /* API Coordinator Model */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EE2B14EB26583BF700CF55E4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14F026583C9500CF55E4 /* Gallery View */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		EE2B14EC26583C0300CF55E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14EF26583C8A00CF55E4 /* Gallery */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EE2B14ED26583C1200CF55E4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		EE2B14EE26583C2400CF55E4 /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14F726583E0100CF55E4 /* APIManager.swift */,
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		EE2B14EF26583C8A00CF55E4 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14FC26583F0200CF55E4 /* PhotosModel.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		EE2B14F026583C9500CF55E4 /* Gallery View */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14F226583CCC00CF55E4 /* GalleryViewController.swift */,
+			);
+			path = "Gallery View";
+			sourceTree = "<group>";
+		};
+		EE2B14F126583C9A00CF55E4 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		EE2B1505265844B300CF55E4 /* API Coordinator Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */,
+			);
+			path = "API Coordinator Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +339,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2B14B9265838CB00CF55E4 /* ViewController.swift in Sources */,
+				EE2B14F826583E0100CF55E4 /* APIManager.swift in Sources */,
+				EE2B14F326583CCC00CF55E4 /* GalleryViewController.swift in Sources */,
 				EE2B14B5265838CB00CF55E4 /* AppDelegate.swift in Sources */,
+				EE2B14FD26583F0200CF55E4 /* PhotosModel.swift in Sources */,
 				EE2B14B7265838CB00CF55E4 /* SceneDelegate.swift in Sources */,
+				EE2B1507265844D100CF55E4 /* SearchAPICoordinatorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
