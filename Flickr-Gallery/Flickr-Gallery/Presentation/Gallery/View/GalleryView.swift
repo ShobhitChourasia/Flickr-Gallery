@@ -20,6 +20,9 @@ class GalleryView: UIView {
         textField.borderStyle = .roundedRect
         textField.clearButtonMode = .whileEditing
         textField.contentVerticalAlignment = .center
+        textField.layer.cornerRadius = 6.0
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.customBlueColor().cgColor
         return textField
     }()
     
@@ -27,11 +30,11 @@ class GalleryView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Search", for: .normal)
-        button.backgroundColor = .clear
-        button.setTitleColor(.customBlueColor(), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.backgroundColor = .customBlueColor()
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 6.0
-        button.layer.borderWidth = 0.5
+        button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.customBlueColor().cgColor
         return button
     }()
@@ -41,7 +44,18 @@ class GalleryView: UIView {
         label.isHidden = true
         label.text = "Loading..."
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .lightText
+        label.textColor = .customBlueColor()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let emptyContentLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.text = "Oops! No data found.\nPlease try another keyword."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .customBlueColor()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = .center
         return label
@@ -50,8 +64,6 @@ class GalleryView: UIView {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-//        layout.minimumInteritemSpacing = 8?
-//        layout.minimumLineSpacing = 8
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,24 +74,25 @@ class GalleryView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .paleOrangeColor()
-        textField.delegate = self
+        backgroundColor = .white
 
         addSubview(textField)
         addSubview(searchButton)
         addSubview(collectionView)
         addSubview(loadingLabel)
-
+        addSubview(emptyContentLabel)
+        
         NSLayoutConstraint.activate([
+            
             textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalPadding),
+            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.horizontalPadding),
             textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.verticalPadding),
             textField.heightAnchor.constraint(equalToConstant: Constants.componentHeight),
             
-            searchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.verticalPadding),
-            searchButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Constants.horizontalPadding),
+            searchButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: Constants.verticalPadding),
             searchButton.heightAnchor.constraint(equalToConstant: Constants.componentHeight),
-            searchButton.widthAnchor.constraint(equalToConstant: Constants.searchButtonWidth),
-            searchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.horizontalPadding),
+            searchButton.widthAnchor.constraint(equalToConstant: Constants.componentHeight * 2),
+            searchButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             collectionView.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: Constants.verticalPadding),
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -88,17 +101,14 @@ class GalleryView: UIView {
 
             loadingLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             loadingLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            emptyContentLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            emptyContentLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension GalleryView: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.textField.text = textField.text
     }
 }
 
@@ -109,6 +119,5 @@ private extension Constant {
         static let horizontalPadding: CGFloat = 16
         static let verticalPadding: CGFloat = 32
         static let componentHeight: CGFloat = 50
-        static let searchButtonWidth: CGFloat = 80
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct APIManager {
     
     static func loadData(for searchModel:SearchAPICoordinatorModel, completion: @escaping (Data?, Error?) -> ()) {
-        let urlString = searchModel.baseUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let urlString = searchModel.baseUrlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
         let url = URL(string: urlString ?? "")!
         URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in

@@ -19,11 +19,12 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let photo: UIImageView = {
+    private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "placeholder")
         return imageView
     }()
     
@@ -32,14 +33,14 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         
         setupCell()
         
+        addSubview(photoImageView)
         addSubview(photoName)
-        addSubview(photo)
         
         NSLayoutConstraint.activate([
-            photo.topAnchor.constraint(equalTo: contentView.topAnchor),
-            photo.leadingAnchor.constraint(equalTo: leadingAnchor),
-            photo.trailingAnchor.constraint(equalTo: trailingAnchor),
-            photo.bottomAnchor.constraint(equalTo: bottomAnchor),
+            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             photoName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             photoName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
@@ -51,8 +52,17 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupContent(title: String) {
-        photoName.text = title
+    func setupContent(photo: Photo) {
+        photoName.text = photo.title ?? ""
+        guard let urlString = ImageUrlFactory(photoModel: photo).getUrl(),
+              let url = URL(string: urlString) else { return }
+        
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            DispatchQueue.main.async {
+                self.photoImageView.image = UIImage(data: data)
+            }
+        }
     }
 }
 
@@ -60,9 +70,11 @@ private typealias CellUI = GalleryItemCollectionViewCell
 private extension CellUI {
     
     func setupCell() {
+        backgroundColor = .clear
+        clipsToBounds = true
         layer.cornerRadius = 10
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
     
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EE2B14B5265838CB00CF55E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */; };
 		EE2B14B7265838CB00CF55E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */; };
-		EE2B14BC265838CB00CF55E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BA265838CB00CF55E4 /* Main.storyboard */; };
 		EE2B14BE265838D700CF55E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BD265838D700CF55E4 /* Assets.xcassets */; };
 		EE2B14C1265838D700CF55E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */; };
 		EE2B14CC265838D700CF55E4 /* Flickr_GalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14CB265838D700CF55E4 /* Flickr_GalleryTests.swift */; };
@@ -23,6 +22,7 @@
 		EECC576D26584F5B00136548 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC576C26584F5B00136548 /* GalleryView.swift */; };
 		EECC57742658511E00136548 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC57732658511E00136548 /* Colors.swift */; };
 		EECC577A26590D3C00136548 /* GalleryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */; };
+		EECC5787265943BE00136548 /* ImageUrlFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC5786265943BE00136548 /* ImageUrlFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		EE2B14B1265838CB00CF55E4 /* Flickr-Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr-Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EE2B14BB265838CB00CF55E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE2B14BD265838D700CF55E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2B14C0265838D700CF55E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2B14C2265838D700CF55E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		EECC576C26584F5B00136548 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		EECC57732658511E00136548 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		EECC5786265943BE00136548 /* ImageUrlFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,6 @@
 				EE2B14C2265838D700CF55E4 /* Info.plist */,
 				EE2B14BD265838D700CF55E4 /* Assets.xcassets */,
 				EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */,
-				EE2B14BA265838CB00CF55E4 /* Main.storyboard */,
 			);
 			path = "Flickr-Gallery";
 			sourceTree = "<group>";
@@ -151,8 +150,7 @@
 		EE2B14EA26583BF000CF55E4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EECC575A26584D0A00136548 /* GalleryViewModel.swift */,
-				EE2B1505265844B300CF55E4 /* API Coordinator Model */,
+				EECC57812659435700136548 /* Gallery */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -254,6 +252,24 @@
 				EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */,
 			);
 			path = "Collection View";
+			sourceTree = "<group>";
+		};
+		EECC57812659435700136548 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				EECC575A26584D0A00136548 /* GalleryViewModel.swift */,
+				EECC57852659436B00136548 /* Image URL Factory */,
+				EE2B1505265844B300CF55E4 /* API Coordinator Model */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		EECC57852659436B00136548 /* Image URL Factory */ = {
+			isa = PBXGroup;
+			children = (
+				EECC5786265943BE00136548 /* ImageUrlFactory.swift */,
+			);
+			path = "Image URL Factory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +377,6 @@
 			files = (
 				EE2B14C1265838D700CF55E4 /* LaunchScreen.storyboard in Resources */,
 				EE2B14BE265838D700CF55E4 /* Assets.xcassets in Resources */,
-				EE2B14BC265838CB00CF55E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +407,7 @@
 				EE2B14B5265838CB00CF55E4 /* AppDelegate.swift in Sources */,
 				EE2B14FD26583F0200CF55E4 /* PhotosModel.swift in Sources */,
 				EECC575B26584D0A00136548 /* GalleryViewModel.swift in Sources */,
+				EECC5787265943BE00136548 /* ImageUrlFactory.swift in Sources */,
 				EE2B14B7265838CB00CF55E4 /* SceneDelegate.swift in Sources */,
 				EE2B1507265844D100CF55E4 /* SearchAPICoordinatorModel.swift in Sources */,
 				EECC576D26584F5B00136548 /* GalleryView.swift in Sources */,
@@ -432,14 +448,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EE2B14BA265838CB00CF55E4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EE2B14BB265838CB00CF55E4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
