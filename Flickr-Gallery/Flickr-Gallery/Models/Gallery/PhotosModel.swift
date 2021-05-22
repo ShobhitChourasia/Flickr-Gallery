@@ -11,11 +11,19 @@ struct PhotosModel: Decodable {
 }
 
 struct PhotosData: Decodable {
-    let page: Int?
-    let pages: Int?
-    let perpage: Int?
-    let total: Int?
-    let photo: [Photo]
+    let currentPage: Int
+    let totalPages: Int
+    let currentPageItems: Int
+    let total: Int
+    let allPhotos: [Photo]
+    
+    private enum CodingKeys : String, CodingKey {
+        case currentPage = "page"
+        case totalPages = "pages"
+        case currentPageItems = "perpage"
+        case total = "total"
+        case allPhotos = "photo"
+    }
 }
 
 struct Photo: Decodable {

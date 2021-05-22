@@ -15,9 +15,11 @@ struct APIManager {
         let url = URL(string: urlString ?? "")!
         URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             if let apiError = error {
+                //Error handler
                 completion(nil, apiError)
             }
             else if let response = data {
+                // Data handler
                 completion(response, nil)
             }
         }.resume()

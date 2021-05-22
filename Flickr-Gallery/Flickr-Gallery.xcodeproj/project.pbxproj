@@ -18,6 +18,11 @@
 		EE2B14F826583E0100CF55E4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14F726583E0100CF55E4 /* APIManager.swift */; };
 		EE2B14FD26583F0200CF55E4 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B14FC26583F0200CF55E4 /* PhotosModel.swift */; };
 		EE2B1507265844D100CF55E4 /* SearchAPICoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */; };
+		EECC575B26584D0A00136548 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC575A26584D0A00136548 /* GalleryViewModel.swift */; };
+		EECC576426584EE900136548 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC576326584EE900136548 /* CustomViewController.swift */; };
+		EECC576D26584F5B00136548 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC576C26584F5B00136548 /* GalleryView.swift */; };
+		EECC57742658511E00136548 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC57732658511E00136548 /* Colors.swift */; };
+		EECC577A26590D3C00136548 /* GalleryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,11 @@
 		EE2B14F726583E0100CF55E4 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EE2B14FC26583F0200CF55E4 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPICoordinatorModel.swift; sourceTree = "<group>"; };
+		EECC575A26584D0A00136548 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		EECC576326584EE900136548 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		EECC576C26584F5B00136548 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		EECC57732658511E00136548 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,17 +115,17 @@
 		EE2B14B3265838CB00CF55E4 /* Flickr-Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				EE2B14C2265838D700CF55E4 /* Info.plist */,
 				EE2B14B4265838CB00CF55E4 /* AppDelegate.swift */,
 				EE2B14B6265838CB00CF55E4 /* SceneDelegate.swift */,
-				EE2B14BD265838D700CF55E4 /* Assets.xcassets */,
-				EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */,
-				EE2B14BA265838CB00CF55E4 /* Main.storyboard */,
 				EE2B14EC26583C0300CF55E4 /* Models */,
 				EE2B14EB26583BF700CF55E4 /* Presentation */,
 				EE2B14EA26583BF000CF55E4 /* ViewModel */,
 				EE2B14EE26583C2400CF55E4 /* Network Manager */,
 				EE2B14ED26583C1200CF55E4 /* Utility */,
+				EE2B14C2265838D700CF55E4 /* Info.plist */,
+				EE2B14BD265838D700CF55E4 /* Assets.xcassets */,
+				EE2B14BF265838D700CF55E4 /* LaunchScreen.storyboard */,
+				EE2B14BA265838CB00CF55E4 /* Main.storyboard */,
 			);
 			path = "Flickr-Gallery";
 			sourceTree = "<group>";
@@ -141,7 +151,7 @@
 		EE2B14EA26583BF000CF55E4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE2B14F126583C9A00CF55E4 /* Gallery */,
+				EECC575A26584D0A00136548 /* GalleryViewModel.swift */,
 				EE2B1505265844B300CF55E4 /* API Coordinator Model */,
 			);
 			path = ViewModel;
@@ -150,7 +160,7 @@
 		EE2B14EB26583BF700CF55E4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				EE2B14F026583C9500CF55E4 /* Gallery View */,
+				EECC576826584F2700136548 /* Gallery */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -166,6 +176,8 @@
 		EE2B14ED26583C1200CF55E4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				EECC5771265850EC00136548 /* Extensions */,
+				EECC576226584ED400136548 /* Custom Presentation */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -186,19 +198,13 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
-		EE2B14F026583C9500CF55E4 /* Gallery View */ = {
+		EE2B14F026583C9500CF55E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE2B14F226583CCC00CF55E4 /* GalleryViewController.swift */,
+				EECC576C26584F5B00136548 /* GalleryView.swift */,
+				EECC577826590D0100136548 /* Collection View */,
 			);
-			path = "Gallery View";
-			sourceTree = "<group>";
-		};
-		EE2B14F126583C9A00CF55E4 /* Gallery */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Gallery;
+			path = View;
 			sourceTree = "<group>";
 		};
 		EE2B1505265844B300CF55E4 /* API Coordinator Model */ = {
@@ -207,6 +213,47 @@
 				EE2B1506265844D100CF55E4 /* SearchAPICoordinatorModel.swift */,
 			);
 			path = "API Coordinator Model";
+			sourceTree = "<group>";
+		};
+		EECC576226584ED400136548 /* Custom Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EECC576326584EE900136548 /* CustomViewController.swift */,
+			);
+			path = "Custom Presentation";
+			sourceTree = "<group>";
+		};
+		EECC576826584F2700136548 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B14F226583CCC00CF55E4 /* GalleryViewController.swift */,
+				EE2B14F026583C9500CF55E4 /* View */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		EECC5771265850EC00136548 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EECC5772265850F900136548 /* UIColor */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EECC5772265850F900136548 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				EECC57732658511E00136548 /* Colors.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		EECC577826590D0100136548 /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				EECC577926590D3C00136548 /* GalleryItemCollectionViewCell.swift */,
+			);
+			path = "Collection View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,11 +387,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2B14F826583E0100CF55E4 /* APIManager.swift in Sources */,
+				EECC57742658511E00136548 /* Colors.swift in Sources */,
 				EE2B14F326583CCC00CF55E4 /* GalleryViewController.swift in Sources */,
 				EE2B14B5265838CB00CF55E4 /* AppDelegate.swift in Sources */,
 				EE2B14FD26583F0200CF55E4 /* PhotosModel.swift in Sources */,
+				EECC575B26584D0A00136548 /* GalleryViewModel.swift in Sources */,
 				EE2B14B7265838CB00CF55E4 /* SceneDelegate.swift in Sources */,
 				EE2B1507265844D100CF55E4 /* SearchAPICoordinatorModel.swift in Sources */,
+				EECC576D26584F5B00136548 /* GalleryView.swift in Sources */,
+				EECC576426584EE900136548 /* CustomViewController.swift in Sources */,
+				EECC577A26590D3C00136548 /* GalleryItemCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
