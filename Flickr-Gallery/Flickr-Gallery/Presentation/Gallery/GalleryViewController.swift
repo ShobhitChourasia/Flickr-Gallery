@@ -77,6 +77,12 @@ private extension UIHandler {
         }
     }
     
+    func showAlertView() {
+        let alert = UIAlertController(title: "Empty Search", message: "Please enter text in the search box to proceed.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 private typealias TextFieldHandler = GalleryViewController
@@ -92,6 +98,10 @@ private typealias GetImages = GalleryViewController
 private extension GetImages {
     
     func getImages() {
+        guard viewModel.checkIfSearchQueryIsValid() else {
+            showAlertView()
+            return
+        }
         if viewModel.currentPageNumber < 2 && customView.collectionView.isHidden {
             showEmptyState(isLoading: true)
         }
@@ -118,7 +128,8 @@ extension CollectionViewDataHandler: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryView.cellIdentifier, for: indexPath) as? GalleryItemCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryView.cellIdentifier, for: indexPath) as? GalleryItemCollectionViewCell,
+              !viewModel.allPhotos.isEmpty else { return UICollectionViewCell() }
         cell.setupContent(photo: viewModel.allPhotos[indexPath.item])
         return cell
     }

@@ -10,24 +10,69 @@ import XCTest
 
 class Flickr_GalleryTests: XCTestCase {
 
+    var viewModel: GalleryViewModelProtocol!
+    
+    //NOTE: Please update time out if test case fails.
+    //It may due to the fact that, due to low network, response was not received within 5 seconds.
+    static let responseTimeout: TimeInterval = 5 // in seconds
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = GalleryViewModel()
+        viewModel.currentPageNumber = 1
+        viewModel.perPageResultCount = 1
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+extension Flickr_GalleryTests {
+ 
+    // Tests API for empty text search
+    func testEmptyTextSearch() {
+        
+    }
+    
+    // Tests API for valid text search
+    func testValidTestResults() {
+        viewModel.searchText = "kittens"
+
+        let resultExpectation = expectation(description: "Valid request with result!")
+        viewModel.getImages { (response) in
+            XCTAssertNotNil(response)
+            XCTAssertTrue(response?.photos?.currentPage == 1)
+            XCTAssertTrue(response?.photos?.total ?? 0 > 0)
+            XCTAssertTrue(response?.photos?.allPhotos.count ?? 0 > 0)
+            resultExpectation.fulfill()
         }
+        
+        waitForExpectations(timeout: Self.responseTimeout, handler: nil)
     }
+    
+    // Tests API for invalid text search
+    func testEmptyTestResults() {
+        viewModel.searchText = "xcasdkjajkdhahdjhadjk"
 
+        let resultExpectation = expectation(description: "Valid request with result!")
+        viewModel.getImages { (response) in
+            XCTAssertNotNil(response)
+            XCTAssertTrue(response?.photos?.currentPage == 1)
+            XCTAssertTrue(response?.photos?.total == 0)
+            XCTAssertTrue(response?.photos?.allPhotos.count ?? 0 == 0)
+            resultExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: Self.responseTimeout, handler: nil)
+    }
+    
+    func testIfPageNumberResetsCorrectly() {
+        viewModel.currentPageNumber = 100
+        
+        viewModel.resetPageNumber()
+        
+        XCTAssertTrue(viewModel.currentPageNumber == 1)
+        XCTAssert(viewModel.allPhotos.count == 0)
+    }
 }

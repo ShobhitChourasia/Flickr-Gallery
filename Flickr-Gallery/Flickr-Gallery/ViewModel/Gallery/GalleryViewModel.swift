@@ -10,9 +10,11 @@ import Foundation
 protocol GalleryModelInput {
     var allPhotos: [Photo] { get set }
     var currentPageNumber: Int { get set }
+    var perPageResultCount: Int { get set }
     var searchText: String { get set }
     var isFetchingMoreData: Bool { get set }
     
+    func checkIfSearchQueryIsValid() -> Bool
     func getImages(completion: @escaping (PhotosModel?) -> ())
     func resetPageNumber()
 }
@@ -27,12 +29,19 @@ class GalleryViewModel: GalleryViewModelProtocol {
     var isFetchingMoreData: Bool = false
     var currentPageNumber: Int = 1
     var searchText: String = ""
+    var perPageResultCount = 20
     
     private var photosModel: PhotosModel?
     
+    func checkIfSearchQueryIsValid() -> Bool {
+        guard searchText.isEmpty else { return true }
+        return false
+    }
+    
     func getImages(completion: @escaping (PhotosModel?) -> ()) {
         let searchAPIModel = SearchAPICoordinatorModel(searchText: searchText,
-                                                       pageNumber: currentPageNumber)
+                                                       pageNumber: currentPageNumber,
+                                                       perPageResultCount: perPageResultCount)
         APIManager.loadData(for: searchAPIModel) { [weak self] (response, error) in
             guard let self = self else { return }
             do {
