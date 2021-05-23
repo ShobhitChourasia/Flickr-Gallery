@@ -118,7 +118,7 @@ extension CollectionViewDataHandler: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GalleryItemCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryView.cellIdentifier, for: indexPath) as? GalleryItemCollectionViewCell else { return UICollectionViewCell() }
         cell.setupContent(photo: viewModel.allPhotos[indexPath.item])
         return cell
     }
@@ -129,12 +129,13 @@ private typealias CollectionViewLayoutHandler = GalleryViewController
 extension CollectionViewLayoutHandler: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 3 - 16
+        let width = collectionView.frame.width / 3 - (Constants.horizontalPadding * 2)
         return .init(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 8, bottom: 0, right: 8)
+        return .init(top: 0, left: Constants.horizontalPadding,
+                     bottom: 0, right: Constants.horizontalPadding)
     }
      
 }
@@ -154,4 +155,13 @@ extension ScrollViewHandler: UIScrollViewDelegate {
         getImages()
     }
     
+}
+
+
+private typealias Constant = GalleryViewController
+private extension Constant {
+    
+    struct Constants {
+        static let horizontalPadding: CGFloat = 8
+    }
 }

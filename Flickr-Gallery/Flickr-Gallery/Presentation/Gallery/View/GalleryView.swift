@@ -9,6 +9,8 @@ import UIKit
 
 class GalleryView: UIView {
     
+    static let cellIdentifier = "cell"
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +69,7 @@ class GalleryView: UIView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.register(GalleryItemCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        view.register(GalleryItemCollectionViewCell.self, forCellWithReuseIdentifier: GalleryView.cellIdentifier)
         view.backgroundColor = .clear
         return view
     }()
