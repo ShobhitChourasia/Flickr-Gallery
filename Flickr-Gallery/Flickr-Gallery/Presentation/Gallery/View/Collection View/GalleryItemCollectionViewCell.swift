@@ -28,6 +28,8 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let utilityQueue = DispatchQueue.global(qos: .utility)
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -58,9 +60,11 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
               let url = URL(string: urlString) else { return }
         
         // Fetch Image Data
-        if let data = try? Data(contentsOf: url) {
-            DispatchQueue.main.async {
-                self.photoImageView.image = UIImage(data: data)
+        utilityQueue.async {
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    self.photoImageView.image = UIImage(data: data)
+                }
             }
         }
     }

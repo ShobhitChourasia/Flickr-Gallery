@@ -144,10 +144,14 @@ extension ScrollViewHandler: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !viewModel.isFetchingMoreData){
-            viewModel.isFetchingMoreData = true
-            viewModel.currentPageNumber += 1
-            getImages()
+            loadMoreImages()
         }
-        
     }
+    
+    func loadMoreImages() {
+        viewModel.isFetchingMoreData = true
+        viewModel.currentPageNumber += 1
+        getImages()
+    }
+    
 }
