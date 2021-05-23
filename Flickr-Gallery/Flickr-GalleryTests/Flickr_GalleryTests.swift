@@ -68,7 +68,7 @@ extension Flickr_GalleryTests {
     func testEmptyTestResults() {
         viewModel.searchText = "xcasdkjajkdhahdjhadjk"
 
-        let resultExpectation = expectation(description: "Valid request with result!")
+        let resultExpectation = expectation(description: "Valid request with no result!")
         viewModel.getImages { (response) in
             XCTAssertNotNil(response)
             XCTAssertTrue(response?.photos?.currentPage == 1)
