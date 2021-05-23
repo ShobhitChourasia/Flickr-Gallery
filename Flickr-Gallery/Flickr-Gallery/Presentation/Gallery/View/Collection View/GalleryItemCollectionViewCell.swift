@@ -51,14 +51,15 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupContent(photo: Photo) {
+    func setupContent(photo: Photo, indexPath: Int) {
         photoName.text = photo.title ?? ""
         guard let urlString = ImageUrlFactory(photoModel: photo).imageUrl,
               let url = URL(string: urlString) else { return }
         
         // Load image from cache if already present, else from server
+        let cacheId = "\(indexPath)" + (photo.id ?? "")
         photoImageView.loadCacheableImage(fromURL: url,
-                                          cacheId: (photo.id ?? "") as NSString,
+                                          cacheId: cacheId as NSString,
                                           placeHolderImage: "placeholder")
     }
 }

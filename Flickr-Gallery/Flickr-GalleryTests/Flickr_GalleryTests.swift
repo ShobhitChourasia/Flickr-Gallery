@@ -32,7 +32,20 @@ extension Flickr_GalleryTests {
  
     // Tests API for empty text search
     func testEmptyTextSearch() {
+        viewModel.searchText = ""
+        XCTAssertFalse(viewModel.checkIfSearchQueryIsValid())
         
+        viewModel.searchText = "   "
+        XCTAssertFalse(viewModel.checkIfSearchQueryIsValid())
+    }
+    
+    // Tests API for non empty text search
+    func testNonEmptyTextSearch() {
+        viewModel.searchText = "kittens"
+        XCTAssertTrue(viewModel.checkIfSearchQueryIsValid())
+        
+        viewModel.searchText = "cute kittens"
+        XCTAssertTrue(viewModel.checkIfSearchQueryIsValid())
     }
     
     // Tests API for valid text search

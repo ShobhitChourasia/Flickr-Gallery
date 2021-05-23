@@ -34,7 +34,7 @@ class GalleryViewModel: GalleryViewModelProtocol {
     private var photosModel: PhotosModel?
     
     func checkIfSearchQueryIsValid() -> Bool {
-        guard searchText.isEmpty else { return true }
+        guard searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return true }
         return false
     }
     

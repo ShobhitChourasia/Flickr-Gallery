@@ -130,7 +130,7 @@ extension CollectionViewDataHandler: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryView.cellIdentifier, for: indexPath) as? GalleryItemCollectionViewCell,
               !viewModel.allPhotos.isEmpty else { return UICollectionViewCell() }
-        cell.setupContent(photo: viewModel.allPhotos[indexPath.item])
+        cell.setupContent(photo: viewModel.allPhotos[indexPath.item], indexPath: indexPath.item)
         return cell
     }
     
