@@ -19,17 +19,14 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let photoImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let photoImageView: CustomCachedImageView = {
+        let imageView = CustomCachedImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "placeholder")
         return imageView
     }()
-    
-    private let utilityQueue = DispatchQueue.global(qos: .utility)
-    
+            
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -56,17 +53,13 @@ class GalleryItemCollectionViewCell: UICollectionViewCell {
     
     func setupContent(photo: Photo) {
         photoName.text = photo.title ?? ""
-        guard let urlString = ImageUrlFactory(photoModel: photo).getUrl(),
+        guard let urlString = ImageUrlFactory(photoModel: photo).imageUrl,
               let url = URL(string: urlString) else { return }
         
-        // Fetch Image Data
-        utilityQueue.async {
-            if let data = try? Data(contentsOf: url) {
-                DispatchQueue.main.async {
-                    self.photoImageView.image = UIImage(data: data)
-                }
-            }
-        }
+        // Load image from cache if already present, else from server
+        photoImageView.loadCacheableImage(fromURL: url,
+                                          cacheId: (photo.id ?? "") as NSString,
+                                          placeHolderImage: "placeholder")
     }
 }
 

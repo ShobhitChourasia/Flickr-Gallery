@@ -9,7 +9,7 @@ struct ImageUrlFactory {
     
     let photoModel: Photo
     
-    func getUrl() -> String? {
+    var imageUrl: String? {
         guard let farm = photoModel.farm,
               let server = photoModel.server,
               let id = photoModel.id,
